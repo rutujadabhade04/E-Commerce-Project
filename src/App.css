@@ -5,8 +5,40 @@
   text-align: center;
 }
 
+.container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.top-left {
+  position: absolute;
+  margin: 10px;
+  padding: 2px;
+  top: -32px;
+  border-radius: 5%;
+  left: -22px;
+  width: 10;
+  color: black;
+  background-color: rgb(195, 215, 22);
+}
+
+.bi-cart {
+  font-size: 45px;
+  padding: 2%;
+}
+
+.content-page{
+  margin: 100px;
+}
+
 .fruit{
   border-radius: 7%;
+}
+
+.logindesign , .signupdesign {
+  color: rgb(95, 3, 3);
+  font-size: larger;
 }
 
 .logo {
