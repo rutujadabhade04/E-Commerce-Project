@@ -27,7 +27,7 @@ export default function Ecomm() {
   async function getUsersFromServer() {
     setLoaderFlag(true);
     let response = await axios("http://localhost:3000/users");
-    setLoaderFlag(false);
+    setLoaderFlag(false); 
     // console.log(response.data);
     setSiteUsers(response.data);
   }
