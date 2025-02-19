@@ -1,8 +1,21 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
+  /* max-width: 1280px; */
+  /* margin: 0 auto; */
   padding: 2rem;
   text-align: center;
+}
+
+body{
+  background-image: url('/background_image.avif');
+  background-size:50%;
+  /* background-size: cover; */
+}
+
+.navbar {
+  height: 130px; /* Adjust this value to your preferred height */
+  border: 3px solid black;
+  background-size: 40%;
+  background-image: url('/Fruit Photography Ideas.jpg');
 }
 
 .container {
@@ -23,13 +36,24 @@
   background-color: rgb(195, 215, 22);
 }
 
+.ll{
+  font-size: xx-large;
+}
+
+#badge{
+  border: 3px solid rgb(161, 19, 42);
+  background-color: rgb(253, 243, 245);
+}
+
 .bi-cart {
-  font-size: 45px;
+  font-size: 30px;
   padding: 2%;
 }
 
 .content-page{
-  margin: 100px;
+  margin: 150px;
+  /* background-color:aliceblue; */
+  background-image: none;
 }
 
 .fruit{
@@ -37,6 +61,7 @@
 }
 
 .logindesign , .signupdesign {
+  background-color: pink;
   color: rgb(95, 3, 3);
   font-size: larger;
 }
@@ -54,6 +79,12 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
+.add_product{
+  font-size:25px;
+  font-weight: 600;
+  width: 25%;
+}
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
@@ -69,8 +100,24 @@
   }
 }
 
+.admin{
+  background-color: white;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 700;
+  font-size: large;
+}
+
+.login , .signup , .adminform , .logout{
+  border: 3px solid rgb(161, 19, 42);
+  background-color: rgb(253, 226, 231);
+  color: rgb(161, 19, 42);
+}
+
 .card {
-  padding: 2em;
+  position: relative;
+  text-align: center;
+  /* color: white; */
 }
 
 .read-the-docs {
