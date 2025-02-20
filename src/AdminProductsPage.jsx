@@ -33,6 +33,7 @@ export default function AdminProductsPage(props) {
     });
     //adminView("list")
     props.onProductEditFormSubmit(list);
+    adminView("list")
     }
 
     else if(adminView == "add"){
@@ -93,5 +94,7 @@ export default function AdminProductsPage(props) {
         </div>
       )}
     </>
-  );
+
+
+);
 }

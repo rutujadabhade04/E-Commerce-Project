@@ -34,7 +34,6 @@ export default function AdminProductForm(props) {
     props.onProductListClick();
   }
 
-
   function handleTextChange(event) {
     let name = event.target.name;
     setProduct({ ...product, [name]: event.target.value });

@@ -7,6 +7,7 @@ import CartList from "./CartList";
 import AdminProductsPage from "./AdminProductsPage.jsx";
 import axios from "axios";
 import Logout from "./Logout.jsx";
+import Bill from "./Bill.jsx";
 
 export default function Ecomm() {
   let [view, setView] = useState(" ");
@@ -16,6 +17,10 @@ export default function Ecomm() {
   let [siteUsers, setSiteUsers] = useState([]);
   let [fruitsList, setFruitsList] = useState([]);
   let [message, setMessage] = useState(" ");
+  let [cartentry, setCartEntry] = useState(" ");
+  // let [userBill , setUserBill] = useState(" ");
+  //let [cartMessage , setCartMessage] = useState(" ");
+  let [name, setName] = useState(" ");
 
   let [loaderFlag, setLoaderFlag] = useState(false);
 
@@ -27,7 +32,7 @@ export default function Ecomm() {
   async function getUsersFromServer() {
     setLoaderFlag(true);
     let response = await axios("http://localhost:3000/users");
-    setLoaderFlag(false); 
+    setLoaderFlag(false);
     // console.log(response.data);
     setSiteUsers(response.data);
   }
@@ -66,13 +71,19 @@ export default function Ecomm() {
       if (loginform.email === e.email) {
         userFound = true;
         if (loginform.password === e.password) {
+          cartentry = "Login Successful";
+          setCartEntry(cartentry);
           if (e.role == "admin") {
             setMessage("Login successful as Admin");
             clearMessage();
+            name = e.name;
+            setName(name);
             setTimeout(() => setView("AdminProductsPage"), 1000);
           } else {
             setMessage("Login successful as User");
             clearMessage();
+            name = e.name;
+            setName(name);
             setTimeout(() => setView("ProductsPage"), 1000);
           }
           break;
@@ -81,32 +92,11 @@ export default function Ecomm() {
           clearMessage();
         }
       }
-    } //for
-    // siteUsers.forEach((e, index) => {
-    //   if (loginform.email === e.email) {
-    //     userFound = true;
-    //     if (loginform.password === e.password) {
-    //       console.log("Login successful");
-    //       // setMessage("Login successful");
-    //       // console.log(e.role);
-
-    //       if (e.role == "admin") {
-    //         setMessage("Login successful as Admin");
-    //         setView("AdminProductsPage")
-
-    //         // setInterval(() => setView("AdminProductsPage"), 1000);
-    //       } else {
-    //         setMessage("Login successful as User");
-    //         setView("ProductsPage")
-    //         // setInterval(() => setView("ProductsPage"), 1000);
-    //       }
-    //     } else {
-    //       setMessage("Wrong Password");
-    //     }
-    //   }
-    // });
+    }
     if (!userFound) {
       setMessage("Please Signup and Login");
+      cartentry = "Login Unsuccessful";
+      setCartEntry(cartentry);
       clearMessage();
     }
   }
@@ -147,6 +137,19 @@ export default function Ecomm() {
     let p = [...fruitsList];
     let cItems = [...cartItems];
     let index = p.indexOf(f);
+
+    // console.log(p);
+    // console.log(cItems);
+    // console.log(index);
+
+    //   count=0;
+    //   setCount(count);
+    //  if(count == 0 ){
+    //   console.log("No element present");
+    //   cartMessage = "Cart is Empty";
+    //   setCartMessage(cartMessage);
+    //  }
+
     if (op == "+") {
       p[index].qty = p[index].qty + 1;
       cItems = cItems.map((e) => {
@@ -172,21 +175,6 @@ export default function Ecomm() {
     setFruitsList(p);
   }
 
-  // function handleAdminButtonClick(op, f) {
-  //   let p = [...fruitsList];
-  //   let index = p.indexOf(f);
-  //   if (op == "edit") {
-  //     console.log("edit");
-  //   } else if (op == "delete") {
-  //     console.log("delete");
-  //   }
-  // }
-  // function handleEditButtonClick(product) {
-
-  // }
-  // function handleDeleteButtonClick(product) {
-
-  // }
   function calculateTotal(f) {
     let total = 0;
     f.forEach((e, index) => {
@@ -213,7 +201,7 @@ export default function Ecomm() {
       "http://localhost:3000/fruits/" + product.id
     );
 
-    let list = fruitsList.filter((e, index) => e.id !== product.id);
+    let list = fruitsList.filter((e, index) => e.id != product.id);
     console.log("list in delete ecom");
     console.log(list);
     setFruitsList(list);
@@ -227,11 +215,11 @@ export default function Ecomm() {
   function handleButtonLogout() {
     setMessage("Thank you for Logging in!");
     setTimeout(() => {
-      setMessage(""); 
+      setMessage("");
     }, 3000);
     setView("logout");
     setTimeout(() => {
-      setView(" "); 
+      setView(" ");
     }, 3000);
   }
   function handleButtonSignup() {
@@ -241,7 +229,29 @@ export default function Ecomm() {
     setView("ProductsPage");
   }
   function handleCartButtonClick() {
-    setView("CartList");
+    //setView("CartList");
+    if (count <= 0 && price <= 0) {
+      setView("no_element");
+    } else {
+      setMessage("To Process the order you need to Login first!")
+      setView("login");
+      setTimeout(() => {
+        setMessage(""); // Clear message from React state
+      }, 3000);
+      if(cartentry == "Login Successful"){
+        setView("CartList")
+      }
+    }
+  }
+  function handleBackButtonClick() {
+    setView("ProductsPage");
+  }
+  function handleStartButtonClick() {
+    setView("ProductsPage");
+  }
+
+  function handleBuyButtonClick() {
+    setView("bill");
   }
 
   return (
@@ -251,6 +261,7 @@ export default function Ecomm() {
           price={price}
           count={count}
           view={view}
+          name={name}
           onButtonLogin={handleButtonLogin}
           onButtonSignup={handleButtonSignup}
           onButtonImage={handleButtonImage}
@@ -259,19 +270,22 @@ export default function Ecomm() {
         />
       </div>
 
+      {/* {
+        view == "bill" && (
+          <Bill onBill = {bill} userBill={userBill}/>
+        )
+      } */}
+
       <div className="content-page ">
         {view == "ProductsPage" && (
           <div className="row">
             <ProductsPage
-              //product={product}
               fruitsList={fruitsList}
               onChangeButtonClick={handleChangeButtonClick}
             />
           </div>
         )}
 
-        {/* {view != "ProductsPage" && (
-          <> */}
         {view == "signup" && (
           <Signup
             message={message}
@@ -279,13 +293,46 @@ export default function Ecomm() {
           />
         )}
 
-        {view == "login" && (
+        {(view == "login" || cartentry == "Login Unsuccessful") && (
           <Login message={message} onLoginFormSubmit={handleLoginFormSubmit} />
         )}
 
         {view == "logout" && <Logout message={message} />}
 
-        <CartList view={view} cartItems={cartItems} />
+        {view == "CartList" && cartentry == "Login Successful" && (
+          <CartList
+            view={view}
+            cartItems={cartItems}
+            onChangeButtonClick={handleChangeButtonClick}
+            onBuyButtonClick={handleBuyButtonClick}
+            onBackButtonClick={handleBackButtonClick}
+            onStartButtonClick={handleStartButtonClick}
+            //onProceed = {proceed}
+            //cartMessage={cartMessage}
+            // count={count}
+          />
+        )}
+
+        {view == "bill" && (
+          <Bill
+            // onChangeButtonClick={handleChangeButtonClick}
+            price={price}
+            name={name}
+            cartItems={cartItems}
+          />
+        )}
+
+
+        {view == "no_element" && (
+          <div className="mb-1 p-2  carttext w-25">
+            Cart is Empty.{" "}
+            <a href="#" onClick={handleStartButtonClick}>
+              Start
+            </a>{" "}
+            Shopping.
+          </div>
+        )}
+
 
         {view == "AdminProductsPage" && (
           <AdminProductsPage

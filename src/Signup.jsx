@@ -33,38 +33,43 @@ export default function Signup(props) {
             onSubmit={handleSignupFormSubmit}
           >
             <div className="row w-75 mx-auto mt-3 pb-5 bg bg-danger-subtle border border-danger border-2">
-              <div class="col-4 col-md-6 col-sm-5 p-3 text-end">Name :</div>
-              <div class="col-8 col-md-6 col-sm-7 p-3 text-start">
+              <div class="col-2 col-md-4 col-sm-3 p-3 text-end"><i class="bi  bi-person-fill"></i>
+               </div>
+              <div class="col-10 col-md-8 col-sm-9 p-3 text-start">
                 <input
                   class="container-fluid w-75 "
                   type="text"
                   name="name"
                   onChange={handleTextChange}
+                 placeholder="Your Name"
                 />
               </div>
-              <div className="col-4 col-md-6 col-sm-5 p-3 text-end">
-                Email-id :
+              <div className="col-2 col-md-4 col-sm-3 p-3 text-end">
+              <i class="bi bi-envelope-fill"></i>
               </div>
-              <div className="col-8 col-md-6 col-sm-7 p-3 text-start">
+              <div className="col-10 col-md-8 col-sm-9 p-3 text-start">
                 <input
                   className="container-fluid w-75"
                   type="email"
                   name="email"
                   onChange={handleTextChange}
+                  placeholder="Email-id"
                 />
               </div>
-              <div class="col-4 col-md-6 col-sm-5 p-3 text-end">Password :</div>
-              <div class="col-8 col-md-6 col-sm-7 p-3 text-start">
+              <div class="col-2 col-md-4 col-sm-3 p-3 text-end">
+              <i class="bi bi-lock-fill"></i> </div>
+              <div class="col-10 col-md-8 col-sm-9 p-3 text-start">
                 <input
                   class="container-fluid w-75"
                   type="password"
                   name="password"
                   onChange={handleTextChange}
+                  placeholder="Password"
                 />
               </div>
               <div className="col-12 p-3 text-center m-3">
-                <input type="submit" value="Submit" />
-                <input type="reset" value="Clear" />
+                <input type="submit" value="Submit" className="btn btn-success me-3"/>
+                <input type="reset" value="Clear" className="btn btn-danger " />
               </div>
             </div>
           </form>

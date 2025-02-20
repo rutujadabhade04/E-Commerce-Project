@@ -23,7 +23,7 @@ export default function AdminProduct(props) {
       props.onDeleteButtonClick(f, true);
     } else {
       props.onDeleteButtonClick(f, false);
-    }
+    } 
   }
   
   
