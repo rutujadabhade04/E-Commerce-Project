@@ -6,6 +6,7 @@ export default function CartList(props) {
   // let {count} = count;
 
   function handleChangeButtonClick(op, e) {
+    
     props.onChangeButtonClick(op, e);
   }
 
@@ -27,24 +28,7 @@ export default function CartList(props) {
 
   return (
     <>
-      {/* {view === "CartList" && ( */}
       <>
-        {/* {cartItems.map((e, index) => {
-            if(e.qty <= 0){
-              return (
-                <div className="mb-1 p-2  carttext w-25">Cart is Empty. <a href="#" onClick={handleStartButtonClick}>Start</a> Shopping.</div>
-                      )
-            }
-            })} */}
-        {/* {view == "no_element" && (
-          <div className="mb-1 p-2  carttext w-25">
-            Cart is Empty.{" "}
-            <a href="#" onClick={handleStartButtonClick}>
-              Start
-            </a>{" "}
-            Shopping.
-          </div>
-        )} */}
         <div className="mb-1 p-2  carttext w-25">
           Proceed to{" "}
           <a

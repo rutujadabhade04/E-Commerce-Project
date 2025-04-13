@@ -19,7 +19,7 @@ export default function Signup(props) {
   return (
     <>
       {/* {view == "signup" && ( */}
-        <div className="signupdesign w-50 text-center mx-auto m-4 p-3">
+        <div className="signupdesign w-75 text-center mx-auto m-4 p-3">
           {" "}
           Sign-up
           <div className="row ">
@@ -32,12 +32,12 @@ export default function Signup(props) {
             method="post"
             onSubmit={handleSignupFormSubmit}
           >
-            <div className="row w-75 mx-auto mt-3 pb-5 bg bg-danger-subtle border border-danger border-2">
-              <div class="col-2 col-md-4 col-sm-3 p-3 text-end"><i class="bi  bi-person-fill"></i>
+            <div className="row w-100 mx-auto mt-3 pb-3 my-auto bg bg-danger-subtle border border-danger border-2">
+              <div className="col-2 col-md-4 col-sm-3 p-3 text-end"><i className="bi  bi-person-fill"></i>
                </div>
-              <div class="col-10 col-md-8 col-sm-9 p-3 text-start">
+              <div className="col-10 col-md-8 col-sm-9 p-3 text-start">
                 <input
-                  class="container-fluid w-75 "
+                  className="container-fluid w-75 "
                   type="text"
                   name="name"
                   onChange={handleTextChange}
@@ -45,7 +45,7 @@ export default function Signup(props) {
                 />
               </div>
               <div className="col-2 col-md-4 col-sm-3 p-3 text-end">
-              <i class="bi bi-envelope-fill"></i>
+              <i className="bi bi-envelope-fill"></i>
               </div>
               <div className="col-10 col-md-8 col-sm-9 p-3 text-start">
                 <input
@@ -56,11 +56,11 @@ export default function Signup(props) {
                   placeholder="Email-id"
                 />
               </div>
-              <div class="col-2 col-md-4 col-sm-3 p-3 text-end">
-              <i class="bi bi-lock-fill"></i> </div>
-              <div class="col-10 col-md-8 col-sm-9 p-3 text-start">
+              <div className="col-2 col-md-4 col-sm-3 p-3 text-end">
+              <i className="bi bi-lock-fill"></i> </div>
+              <div className="col-10 col-md-8 col-sm-9 p-3 text-start">
                 <input
-                  class="container-fluid w-75"
+                  className="container-fluid w-75"
                   type="password"
                   name="password"
                   onChange={handleTextChange}

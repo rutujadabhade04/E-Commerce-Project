@@ -1,14 +1,21 @@
+import Signup from "./Signup";
+
 export default function NavBar(props) {
   let { count } = props;
   let { view } = props;
   let { price } = props;
-  let {name} = props;
+  let { name } = props;
+  let { cartentry } = props;
+  let {siteUsers} = props;
 
   function handleButtonLogin() {
     props.onButtonLogin();
   }
   function handleButtonSignup() {
     props.onButtonSignup();
+  }
+  function handleLoginUsingGoogleButtonClick(){
+    props.onLoginUsingGoogleButtonClick();
   }
   function handleButtonImage() {
     props.onButtonImage();
@@ -23,65 +30,82 @@ export default function NavBar(props) {
   return (
     <nav className="navbar p-4 navbar-expand-lg mb-4 mt-0">
       <div className="container-fluid">
-      <div className="d-flex col-3 justify-content-start p-0 ">
-        <button onClick={handleButtonImage}>
-          <img className="img-fluid" src="/shop_logo.jpg" alt="" style={{ maxHeight: '50px' }}/>
-        </button>
-      </div>
-      <div className="col-1"></div>
-      <div className="col-6 d-flex justify-content-center align-items-center">
-        {/* {(view != "logout" && view != "ProductsPage" )&& ( */}
-        {(view == "logout" && view != "ProductsPage" && view != "AdminProductsPage" || view=="login" || view=="signup" || view == " ") && (
-          <>
-            <button
-              className="login btn btn-light m-4 p-2"
-              onClick={handleButtonLogin}
-            >
-              {" "}
-              Login{" "}
-            </button>
-            <button
-              className="signup btn btn-light m-4 p-2"
-              onClick={handleButtonSignup}
-            >
-              {" "}
-              Signup{" "}
-            </button>
-          </>
-        )}
-        {/* )} */}
+        <div className="d-flex col-3 justify-content-start p-0 ">
+          <button onClick={handleButtonImage}>
+            <img
+              className="img-fluid"
+              src="/shop_logo.jpg"
+              alt=""
+              style={{ maxHeight: "50px" }}
+            />
+          </button>
+        </div>
+        <div className="col-1"></div>
+        <div className="col-6 d-flex justify-content-center align-items-center">
+         
 
-        {(view == "ProductsPage" || view == "AdminProductsPage" || view == "bill" || view == "CartList") && (
+{cartentry == "Login Successful" ||
           <>
-          <div className="border border-black border-1 p-2 name">
-            {" "}
-            Welcome {name} !
-            </div>
-            <button
-              className="logout btn btn-light m-4 p-2"
-              onClick={handleButtonLogout}
-            >
-              {" "}
-              Logout{" "}
-            </button>
+          {( view == "login" || view == " " || view == "ProductsPage" || view == "signup" || view == "no_element") && (
+            <>
+              <button
+                className="login btn btn-light m-4 p-2"
+                onClick={handleButtonLogin}
+              >
+                {" "}
+                Login{" "}
+              </button>
+              <button
+                className="signup btn btn-light m-4 p-2"
+                onClick={handleButtonSignup}
+              >
+                {" "}
+                Signup{" "}
+              </button>
+              <button className="login btn btn-light" onClick={handleLoginUsingGoogleButtonClick}>
+                Login with Google
+              </button>
             </>
-        )}
-        {/* )} */}
-      </div>
+          )}
+</>
+}
 
+          {/* )} */}
 
-      <div className="col-2 d-flex justify-content-end align-items-center ">
-        <button id="badge" onClick={handleCartButtonClick}>
-          <i className="bi bi-cart "></i>
-          {count} Rs.{price}
-        </button>
-      </div>
-      
+          {/* {(view == "ProductsPage" || view == "AdminProductsPage" 
+        || view == "bill" || view == "CartList") && ( */}
+  {cartentry == "Login Successful" && 
+          <>
+          {(view != " " && view != "login" && view != "signup" && view != "no_element" ) && (
+            <>
+              <div className="border border-black border-1 p-2 name">
+                {" "}
+                Welcome {name} !
+              </div>
+              <button
+                className="logout btn btn-light m-4 p-2"
+                onClick={handleButtonLogout}
+              >
+                {" "}
+                Logout{" "}
+              </button>
+            </>
+          )}
+        </>
+}
+          {/* )} */}
+        </div>
+
+        <div className="col-2 d-flex justify-content-end align-items-center ">
+          <button id="badge" onClick={handleCartButtonClick}>
+            <i className="bi bi-cart "></i>
+            {count} Rs.{price}
+          </button>
+        </div>
       </div>
     </nav>
   );
 }
-
 
 //         {/* Cart Button */}
 //         <div className="col-2 d-flex justify-content-end align-items-center">
@@ -93,40 +117,6 @@ export default function NavBar(props) {
 //     </nav>
 //   );
 // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // export default function NavBar(props) {
 //   let { count } = props;

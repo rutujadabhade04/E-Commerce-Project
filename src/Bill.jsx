@@ -3,21 +3,18 @@ export default function Bill(props) {
   let {price} = props;
   let {name} = props;
   const currentDate = new Date().toLocaleDateString();
-//   function handleChangeButtonClick(op, e) {
-//     props.onChangeButtonClick(op, e);
-//   }
 
   return (
     <>
       {
         <div>
-          <div>
+          <div className="carttext w-25">
             <a href="#">Share</a> Bill on WhatsApp
           </div>
 
           <div className="bill"
           >
-            <div className=" mx-auto p-2 pb-1 pt-2 my-auto h5 ">
+            <div className=" mx-auto p-2 pb-1 pt-2 my-auto h5 mycontainer ">
               || Shree ||
             </div>
             <div className="h3"> Laxmi Fruit Shop </div>

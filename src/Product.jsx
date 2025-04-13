@@ -39,14 +39,15 @@ export default function Product(props) {
           <div>
             <button
               className={
-                "m-2 p-3 btn " + (f.inStock ? "btn-danger" : "btn-secondary")
+                "m-2 p-3 btn " + (f.inStock == "yes" ? "btn-danger" : "btn-secondary")
               }
               onClick={() => {
                 handleChangeButtonClick("addtocart");
               }}
-              disabled={f.inStock == false}
+              disabled={f.inStock == "no"}
             >
-              {f.inStock ? "Add to Cart" : "Out of Stock"}
+              {f.inStock == "yes" ? "Add to Cart" : "Out of Stock"}
+              
             </button>
           </div>
         )}

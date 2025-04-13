@@ -10,6 +10,8 @@ export default function AdminProductsPage(props) {
 
   function handleEditButtonClick(product) {
     // props.onEditButtonClick(product);
+    console.log(product);
+    console.log("handle button pg");
     setAdminView("edit");
     setSelectedProduct(product);
   }
@@ -19,8 +21,8 @@ export default function AdminProductsPage(props) {
   }
 
   function handleProductAddEditFormSubmit(product) {
-    // console.log("product in adminproduct pg");
-    // console.log(product);
+    console.log("product in adminproduct pg");
+    console.log(product);
     if(adminView == "edit"){
     console.log("for Edit");
     let list = [...fruitsList]; // copy of array object ... rest parameters
@@ -33,11 +35,12 @@ export default function AdminProductsPage(props) {
     });
     //adminView("list")
     props.onProductEditFormSubmit(list);
-    adminView("list")
+    //adminView("list")
     }
 
     else if(adminView == "add"){
     console.log("for Add");
+    console.log(product);
     let list = [...fruitsList];
     list.push(product);
     props.onProductAddFormSubmit(list);
@@ -45,11 +48,6 @@ export default function AdminProductsPage(props) {
     //console.log(list);
     }
   }
-
-  // function handleProductListClick() {
-  //   props.onProductListClick();
-  //   setAdminView("add")
-  // }
 
   function handleProductListClick() {
     setAdminView("list");
@@ -81,7 +79,7 @@ export default function AdminProductsPage(props) {
       )}
 
       {adminView == "list" && (
-        <div className="row text-center p-0 ">
+        <div className="row text-center p-0 m-5">
           {fruitsList.map((e, index) => (
             <AdminProduct
               f={e}
